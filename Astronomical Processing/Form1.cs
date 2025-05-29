@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -230,32 +231,24 @@ namespace Astronomical_Processing
 
         private void ModeButton_Click(object sender, EventArgs e)
         {
-            Dictionary<int, int> freq = new Dictionary<int, int>();
-            for (int i = 0; i < myArray.Length; i++)
-            {
-                if (!freq.ContainsKey(myArray[i]))
-                    freq[myArray[i]] = 1;
+            Dictionary<int, int> Counts= new Dictionary<int, int>();
+            foreach (int a in myArray) {
+                if (Counts.ContainsKey(a))
+                    Counts[a] = Counts[a] + 1;
                 else
-                    freq[myArray[i]]++;
-            }
-
-            int maxCount = 0;
-            List<int> modes = new List<int>();
-
-            foreach (var pair in freq)
+                    Counts[a] = 1;
+             }
+            
+            int modes = int.MinValue;
+            int max = int.MinValue;
+            foreach (int key in Counts.Keys)
             {
-                if (pair.Value > maxCount)
+                if (Counts[key] > max)
                 {
-                    maxCount = pair.Value;
-                    modes.Clear();
-                    modes.Add(pair.Key);
-                }
-                else if (pair.Value == maxCount)
-                {
-                    modes.Add(pair.Key);
+                    max = Counts[key];
+                    modes = key;
                 }
             }
-
             MessageBox.Show("Mode(s): " + string.Join(", ", modes));
         }
 
@@ -289,8 +282,40 @@ namespace Astronomical_Processing
         private void SequentialSearchButton_Click(object sender, EventArgs e)
         {
             ListBoxResults.Items.Clear();
+            if (string.IsNullOrWhiteSpace(TextBoxSearch.Text))
+            {
+                MessageBox.Show("Please enter a value to search.");
+                return;
+            }
 
-            
+            int searchValue;
+            if (!int.TryParse(TextBoxSearch.Text, out searchValue))
+            {
+                MessageBox.Show("Please enter a valid integer.");
+                return;
+            }
+
+            bool found = false;
+
+            for (int i = 0; i < myArray.Length; i++)
+            {
+                if (myArray[i] == searchValue)
+                {
+                    ListBoxResults.Items.Add($"Searching Value: {TextBoxSearch.Text}");
+                    ListBoxResults.Items.Add($"Found at index {i}");
+                    found = true;
+                }
+            }
+            if (!found)
+            {
+                MessageBox.Show("Value not found.");
+            }
+            else
+            {
+                MessageBox.Show("Search successful!");
+            }
+
+
 
         }
     }

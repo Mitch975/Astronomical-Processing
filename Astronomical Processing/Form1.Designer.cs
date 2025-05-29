@@ -39,6 +39,7 @@
             this.AverageButton = new System.Windows.Forms.Button();
             this.RangeButton = new System.Windows.Forms.Button();
             this.SequentialSearchButton = new System.Windows.Forms.Button();
+            this.TextBoxOutput = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ListBoxResults
@@ -146,11 +147,20 @@
             this.SequentialSearchButton.UseVisualStyleBackColor = true;
             this.SequentialSearchButton.Click += new System.EventHandler(this.SequentialSearchButton_Click);
             // 
+            // TextBoxOutput
+            // 
+            this.TextBoxOutput.Location = new System.Drawing.Point(254, 301);
+            this.TextBoxOutput.Name = "TextBoxOutput";
+            this.TextBoxOutput.ReadOnly = true;
+            this.TextBoxOutput.Size = new System.Drawing.Size(156, 20);
+            this.TextBoxOutput.TabIndex = 10;
+            // 
             // SprintForm1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(498, 409);
+            this.Controls.Add(this.TextBoxOutput);
             this.Controls.Add(this.SequentialSearchButton);
             this.Controls.Add(this.RangeButton);
             this.Controls.Add(this.AverageButton);
@@ -182,6 +192,7 @@
         private System.Windows.Forms.Button AverageButton;
         private System.Windows.Forms.Button RangeButton;
         private System.Windows.Forms.Button SequentialSearchButton;
+        private System.Windows.Forms.TextBox TextBoxOutput;
     }
 }
 
