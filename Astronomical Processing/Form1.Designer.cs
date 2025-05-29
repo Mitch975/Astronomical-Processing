@@ -43,6 +43,7 @@
             this.ListBoxResults.Name = "ListBoxResults";
             this.ListBoxResults.Size = new System.Drawing.Size(219, 264);
             this.ListBoxResults.TabIndex = 0;
+            this.ListBoxResults.SelectedIndexChanged += new System.EventHandler(this.ListBoxResults_SelectedIndexChanged);
             // 
             // ButtonSort
             // 

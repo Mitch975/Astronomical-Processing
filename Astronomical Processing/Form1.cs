@@ -207,5 +207,10 @@ namespace Astronomical_Processing
                 ListBoxResults.Items.Add(value);
             }
         }
+
+        private void ListBoxResults_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
