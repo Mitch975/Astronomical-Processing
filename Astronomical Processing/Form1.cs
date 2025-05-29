@@ -226,7 +226,7 @@ namespace Astronomical_Processing
             }
 
             double midExtreme = (min + maxVal) / 2.0;
-            MessageBox.Show($"Mid-Extreme: {midExtreme:F2}");
+            TextBoxOutput.Text = $"Mid-Extreme: {midExtreme:F2}";
         }
 
         private void ModeButton_Click(object sender, EventArgs e)
@@ -249,7 +249,7 @@ namespace Astronomical_Processing
                     modes = key;
                 }
             }
-            MessageBox.Show("Mode(s): " + string.Join(", ", modes));
+            TextBoxOutput.Text = $"Mode(s): " + string.Join(", ", modes);
         }
 
         private void AverageButton_Click(object sender, EventArgs e)
@@ -261,7 +261,7 @@ namespace Astronomical_Processing
             }
 
             double average = total / myArray.Length;
-            MessageBox.Show($"Average: {average:F2}");
+            TextBoxOutput.Text = $"Average: {average:F2}";
         }
 
         private void RangeButton_Click(object sender, EventArgs e)
@@ -276,7 +276,7 @@ namespace Astronomical_Processing
             }
 
             int range = maxVal - min;
-            MessageBox.Show($"Range: {range}");
+            TextBoxOutput.Text = $"Range: {range}";
         }
 
         private void SequentialSearchButton_Click(object sender, EventArgs e)
@@ -308,10 +308,11 @@ namespace Astronomical_Processing
             }
             if (!found)
             {
-                MessageBox.Show("Value not found.");
+                MessageBox.Show("Value not found."); 
             }
             else
             {
+
                 MessageBox.Show("Search successful!");
             }
 
