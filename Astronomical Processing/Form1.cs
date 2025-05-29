@@ -212,5 +212,86 @@ namespace Astronomical_Processing
         {
 
         }
+
+        private void MidExButton_Click(object sender, EventArgs e)
+        {
+            int min = myArray[0];
+            int maxVal = myArray[0];
+
+            for (int i = 1; i < myArray.Length; i++)
+            {
+                if (myArray[i] < min) min = myArray[i];
+                if (myArray[i] > maxVal) maxVal = myArray[i];
+            }
+
+            double midExtreme = (min + maxVal) / 2.0;
+            MessageBox.Show($"Mid-Extreme: {midExtreme:F2}");
+        }
+
+        private void ModeButton_Click(object sender, EventArgs e)
+        {
+            Dictionary<int, int> freq = new Dictionary<int, int>();
+            for (int i = 0; i < myArray.Length; i++)
+            {
+                if (!freq.ContainsKey(myArray[i]))
+                    freq[myArray[i]] = 1;
+                else
+                    freq[myArray[i]]++;
+            }
+
+            int maxCount = 0;
+            List<int> modes = new List<int>();
+
+            foreach (var pair in freq)
+            {
+                if (pair.Value > maxCount)
+                {
+                    maxCount = pair.Value;
+                    modes.Clear();
+                    modes.Add(pair.Key);
+                }
+                else if (pair.Value == maxCount)
+                {
+                    modes.Add(pair.Key);
+                }
+            }
+
+            MessageBox.Show("Mode(s): " + string.Join(", ", modes));
+        }
+
+        private void AverageButton_Click(object sender, EventArgs e)
+        {
+            double total = 0;
+            for (int i = 0; i < myArray.Length; i++)
+            {
+                total += myArray[i];
+            }
+
+            double average = total / myArray.Length;
+            MessageBox.Show($"Average: {average:F2}");
+        }
+
+        private void RangeButton_Click(object sender, EventArgs e)
+        {
+            int min = myArray[0];
+            int maxVal = myArray[0];
+
+            for (int i = 1; i < myArray.Length; i++)
+            {
+                if (myArray[i] < min) min = myArray[i];
+                if (myArray[i] > maxVal) maxVal = myArray[i];
+            }
+
+            int range = maxVal - min;
+            MessageBox.Show($"Range: {range}");
+        }
+
+        private void SequentialSearchButton_Click(object sender, EventArgs e)
+        {
+            ListBoxResults.Items.Clear();
+
+            
+
+        }
     }
 }
