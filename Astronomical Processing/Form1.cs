@@ -1,4 +1,12 @@
-﻿using System;
+﻿// Mitchell Barker, Team Mitch, Sprint Number 1
+// Date: 5/6/25
+// Version: 1
+// Astronomical Processing
+// Brief explanation of the program and list,
+// Inputs, Processes, Outputs
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
