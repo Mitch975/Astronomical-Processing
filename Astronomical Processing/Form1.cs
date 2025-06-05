@@ -19,7 +19,7 @@ namespace Astronomical_Processing
             //Call a method to fill Array
             FillArray();
         }
-        // Global variables
+        // Defining my Array with a value of 24
         static int max = 24;
         int[] myArray = new int[max];
 
@@ -184,7 +184,7 @@ namespace Astronomical_Processing
                 return;
             }
 
-            // Update the array at the specified index, clears the listbox and reposts the array with the updated value at the specified index.
+            // Update the array at the specified index, clear the listbox and repost the array with the updated value at the index point.
             myArray[index] = newValue;
             ListBoxResults.Items.Clear();
             ListBoxResults.Items.Add("Updated Array: ");
@@ -204,7 +204,6 @@ namespace Astronomical_Processing
             ListBoxResults.Items.Clear();
             foreach (int value in myArray)
             {
-
                 ListBoxResults.Items.Add(value);
             }
         }
@@ -216,31 +215,40 @@ namespace Astronomical_Processing
 
         private void MidExButton_Click(object sender, EventArgs e)
         {
+            //initialize the min and max variables
             int min = myArray[0];
             int maxVal = myArray[0];
 
+            //loop through the array
             for (int i = 1; i < myArray.Length; i++)
             {
+                //update the min and max if the current element is smaller or larger.
                 if (myArray[i] < min) min = myArray[i];
                 if (myArray[i] > maxVal) maxVal = myArray[i];
             }
-
+            //Calculate the midExtreme and display the value formatted to 2 decimal places (double) in the output textbox.
             double midExtreme = (min + maxVal) / 2.0;
             TextBoxOutput.Text = $"Mid-Extreme: {midExtreme:F2}";
         }
 
         private void ModeButton_Click(object sender, EventArgs e)
         {
+            //Create dictionary to hold each number as a key and its frequency as a value
             Dictionary<int, int> Counts= new Dictionary<int, int>();
+
+            //Count occurences of each number in the array
             foreach (int a in myArray) {
                 if (Counts.ContainsKey(a))
-                    Counts[a] = Counts[a] + 1;
+                    Counts[a] = Counts[a] + 1; //if key exists increase count by 1
                 else
-                    Counts[a] = 1;
+                    Counts[a] = 1; // Create new key count
              }
             
+            //initialise variable to store mode and max(key frequency)
             int modes = int.MinValue;
             int max = int.MinValue;
+
+            //Find the number with the highest frequency
             foreach (int key in Counts.Keys)
             {
                 if (Counts[key] > max)
@@ -249,23 +257,27 @@ namespace Astronomical_Processing
                     modes = key;
                 }
             }
-            TextBoxOutput.Text = $"Mode(s): " + string.Join(", ", modes);
+            //Output result to the textbox.
+            TextBoxOutput.Text = $"Mode: " + string.Join(", ", modes);
         }
 
         private void AverageButton_Click(object sender, EventArgs e)
         {
             double total = 0;
+
+            //Add all values in the array
             for (int i = 0; i < myArray.Length; i++)
             {
                 total += myArray[i];
             }
-
+            //Calculate the average and output
             double average = total / myArray.Length;
             TextBoxOutput.Text = $"Average: {average:F2}";
         }
 
         private void RangeButton_Click(object sender, EventArgs e)
         {
+            //Initialise the min and max value by using the 1st element of the array
             int min = myArray[0];
             int maxVal = myArray[0];
 
@@ -275,12 +287,14 @@ namespace Astronomical_Processing
                 if (myArray[i] > maxVal) maxVal = myArray[i];
             }
 
+            //Calculate the range and output result to textbox
             int range = maxVal - min;
             TextBoxOutput.Text = $"Range: {range}";
         }
 
         private void SequentialSearchButton_Click(object sender, EventArgs e)
         {
+            //Clears the listbox and checks if the search box is empty or has whitespace
             ListBoxResults.Items.Clear();
             if (string.IsNullOrWhiteSpace(TextBoxSearch.Text))
             {
@@ -289,6 +303,8 @@ namespace Astronomical_Processing
             }
 
             int searchValue;
+            
+            //TryParse the search input as an integer so users cant input letters etc
             if (!int.TryParse(TextBoxSearch.Text, out searchValue))
             {
                 MessageBox.Show("Please enter a valid integer.");
@@ -297,6 +313,7 @@ namespace Astronomical_Processing
 
             bool found = false;
 
+            //Loop through the array to find the search value
             for (int i = 0; i < myArray.Length; i++)
             {
                 if (myArray[i] == searchValue)
@@ -306,6 +323,7 @@ namespace Astronomical_Processing
                     found = true;
                 }
             }
+            //Generate a Error or Success message
             if (!found)
             {
                 MessageBox.Show("Value not found."); 
@@ -315,9 +333,6 @@ namespace Astronomical_Processing
 
                 MessageBox.Show("Search successful!");
             }
-
-
-
         }
     }
 }
